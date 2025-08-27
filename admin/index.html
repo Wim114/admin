@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Tierambulanz Prater</title>
+
+    <!-- Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #00ace2, #005d83);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 400px;
+        }
+
+        button {
+            background: #00ace2;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background: #005d83;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h2>Admin Bereich</h2>
+        <p>Bitte melden Sie sich an</p>
+        <button onclick="netlifyIdentity.open('login')">Anmelden</button>
+    </div>
+
+    <script>
+        netlifyIdentity.init();
+
+        netlifyIdentity.on('login', user => {
+            window.location.href = '/admin/dashboard.html';
+        });
+
+        // If already logged in, redirect
+        if (netlifyIdentity.currentUser()) {
+            window.location.href = '/admin/dashboard.html';
+        }
+    </script>
+</body>
+</html>

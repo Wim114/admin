@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tierambulanz Prater - Admin Panel</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #00ace2;
+            --secondary-color: #005d83;
+            --accent-color: #ebf9ff;
+            --text-dark: #22242C;
+            --success: #28a745;
+            --danger: #ff4444;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+        }
+
+        /* Admin Panel Styles */
+        .admin-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .admin-header {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .admin-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .announcement-item {
+            background: #f8f9fa;
+            padding: 15font;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .edit-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .edit-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .delete-btn {
+            background: var(--danger);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-scheduled {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-draft {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Website Preview */
+        .website-preview {
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 30px;
+        }
+
+        .preview-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+        }
+
+        .preview-content {
+            padding: 20px;
+            background: white;
+            min-height: 400px;
+        }
+
+        /* Announcement Banner on Website */
+        .announcement-banner {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            display: none;
+        }
+
+        .announcement-banner.active {
+            display: block;
+        }
+
+        .announcement-banner .close-btn {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Form Styles */
+        .form-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .form-control, .form-select {
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            padding: 10px 15px;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(0,172,226,0.25);
+        }
+
+        /* Tabs */
+        .nav-tabs {
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .nav-tabs .nav-link {
+            color: var(--text-dark);
+            border: none;
+            padding: 12px 25px;
+            font-weight: 500;
+        }
+
+        .nav-tabs .nav-link.active {
+            color: var(--primary-color);
+            background: white;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        /* Quick Actions */
+        .quick-action {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quick-action:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .quick-action i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Panel -->
+    <div class="admin-container">
+        <div class="admin-header">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1><i class="fas fa-cog"></i> Tierambulanz Prater - Admin Panel</h1>
+                    <p class="mb-0 text-muted">Verwalten Sie Ihre Website-Inhalte einfach und schnell</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <button class="edit-btn" onclick="viewWebsite()">
+                        <i class="fas fa-eye"></i> Website Ansehen
+                    </button>
+                    <button class="btn btn-outline-secondary" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Abmelden
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <ul class="nav nav-tabs mb-4" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#announcements">
+                    <i class="fas fa-bullhorn"></i> Ankündigungen
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#hours">
+                    <i class="fas fa-clock"></i> Öffnungszeiten
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#team">
+                    <i class="fas fa-users"></i> Team
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#services">
+                    <i class="fas fa-heartbeat"></i> Leistungen
+                </a>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Announcements Tab -->
+            <div class="tab-pane fade show active" id="announcements">
+                <div class="admin-card">
+                    <h3><i class="fas fa-plus-circle"></i> Neue Ankündigung erstellen</h3>
+                    <form id="announcementForm">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Art der Ankündigung</label>
+                                <select class="form-select" id="announcementType">
+                                    <option value="holiday">🏖️ Urlaubszeit</option>
+                                    <option value="emergency">🚨 Notfall-Information</option>
+                                    <option value="news">📰 Neuigkeiten</option>
+                                    <option value="special">⭐ Sonderaktion</option>
+                                    <option value="warning">⚠️ Wichtiger Hinweis</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Start Datum</label>
+                                <input type="date" class="form-control" id="startDate">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">End Datum</label>
+                                <input type="date" class="form-control" id="endDate">
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Titel</label>
+                                <input type="text" class="form-control" id="announcementTitle"
+                                       placeholder="z.B. Urlaubszeit vom 24.12. bis 02.01.">
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Nachricht</label>
+                                <textarea class="form-control" id="announcementMessage" rows="3"
+                                          placeholder="z.B. Wir sind vom 24. Dezember bis 2. Januar im Urlaub. In dringenden Notfällen wenden Sie sich bitte an die Tierklinik Wien unter +43 1 234567"></textarea>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Vertretung (optional)</label>
+                                <input type="text" class="form-control" id="substituteInfo"
+                                       placeholder="z.B. Dr. Müller, Tierklinik Wien, Tel: +43 1 234567">
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" class="edit-btn">
+                                    <i class="fas fa-save"></i> Ankündigung Speichern
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Current Announcements -->
+                <div class="admin-card">
+                    <h3><i class="fas fa-list"></i> Aktuelle Ankündigungen</h3>
+                    <div id="announcementsList">
+                        <div class="announcement-item">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <h5>🏖️ Weihnachtsurlaub 2024</h5>
+                                    <p class="mb-1">Vom 24.12.2024 bis 02.01.2025 sind wir im Urlaub.</p>
+                                    <small class="text-muted">Vertretung: Dr. Müller, Tierklinik Wien</small>
+                                    <br>
+                                    <span class="status-badge status-scheduled">Geplant</span>
+                                </div>
+                                <div class="col-md-4 text-end">
+                                    <button class="edit-btn" onclick="editAnnouncement(1)">
+                                        <i class="fas fa-edit"></i> Bearbeiten
+                                    </button>
+                                    <button class="delete-btn" onclick="deleteAnnouncement(1)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="announcement-item">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <h5>⭐ Neue Zahnreinigungsaktion</h5>
+                                    <p class="mb-1">20% Rabatt auf alle Zahnreinigungen im November!</p>
+                                    <span class="status-badge status-active">Aktiv</span>
+                                </div>
+                                <div class="col-md-4 text-end">
+                                    <button class="edit-btn" onclick="editAnnouncement(2)">
+                                        <i class="fas fa-edit"></i> Bearbeiten
+                                    </button>
+                                    <button class="delete-btn" onclick="deleteAnnouncement(2)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Opening Hours Tab -->
+            <div class="tab-pane fade" id="hours">
+                <div class="admin-card">
+                    <h3><i class="fas fa-clock"></i> Öffnungszeiten bearbeiten</h3>
+                    <form id="hoursForm">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" id="specialHoursToggle">
+                                    <label class="form-check-label" for="specialHoursToggle">
+                                        Sonderöffnungszeiten aktivieren (z.B. Feiertage)
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <h5>Reguläre Öffnungszeiten</h5>
+                                <div class="mb-3">
+                                    <label class="form-label">Montag - Freitag</label>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input type="text" class="form-control" value="09:00-12:00">
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" class="form-control" value="16:00-19:00">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Samstag</label>
+                                    <input type="text" class="form-control" value="09:00-12:00">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Sonntag</label>
+                                    <select class="form-select">
+                                        <option>Geschlossen</option>
+                                        <option>Notdienst</option>
+                                        <option>Geöffnet</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <h5>Notdienst Informationen</h5>
+                                <div class="mb-3">
+                                    <label class="form-label">Notdienst Telefon</label>
+                                    <input type="tel" class="form-control" value="+43 01 7269181">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Notdienst Zeiten</label>
+                                    <textarea class="form-control" rows="3">24/7 Notdienst verfügbar
+Bitte rufen Sie vorher an!</textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <button type="submit" class="edit-btn">
+                                    <i class="fas fa-save"></i> Öffnungszeiten Speichern
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Team Tab -->
+            <div class="tab-pane fade" id="team">
+                <div class="admin-card">
+                    <h3><i class="fas fa-user-plus"></i> Teammitglied hinzufügen/bearbeiten</h3>
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" placeholder="Dr. Max Mustermann">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Position</label>
+                                <input type="text" class="form-control" placeholder="Tierarzt für Kleintiere">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Spezialgebiete</label>
+                                <input type="text" class="form-control" placeholder="Chirurgie, Innere Medizin">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Status</label>
+                                <select class="form-select">
+                                    <option>Aktiv</option>
+                                    <option>Im Urlaub</option>
+                                    <option>Fortbildung</option>
+                                    <option>Inaktiv</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" class="edit-btn">
+                                    <i class="fas fa-save"></i> Teammitglied Speichern
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Services Tab -->
+            <div class="tab-pane fade" id="services">
+                <div class="admin-card">
+                    <h3><i class="fas fa-heartbeat"></i> Leistungen & Preise verwalten</h3>
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Leistung</label>
+                                <input type="text" class="form-control" placeholder="z.B. Impfung Katze">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Preis</label>
+                                <input type="text" class="form-control" placeholder="€ 45">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Verfügbarkeit</label>
+                                <select class="form-select">
+                                    <option>Verfügbar</option>
+                                    <option>Temporär nicht verfügbar</option>
+                                    <option>Nur nach Vereinbarung</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" class="edit-btn">
+                                    <i class="fas fa-save"></i> Leistung Speichern
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="row mt-4">
+            <div class="col-md-3">
+                <div class="quick-action" onclick="quickHolidayMode()">
+                    <i class="fas fa-umbrella-beach"></i>
+                    <h5>Urlaubsmodus</h5>
+                    <p class="mb-0 text-muted">Schnell aktivieren</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="quick-action" onclick="quickEmergency()">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h5>Notfall-Banner</h5>
+                    <p class="mb-0 text-muted">Dringende Mitteilung</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="quick-action" onclick="quickSpecialHours()">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h5>Feiertags-Zeiten</h5>
+                    <p class="mb-0 text-muted">Sonderöffnungszeiten</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="quick-action" onclick="exportData()">
+                    <i class="fas fa-download"></i>
+                    <h5>Daten exportieren</h5>
+                    <p class="mb-0 text-muted">Backup erstellen</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Live Preview -->
+        <div class="website-preview">
+            <div class="preview-header">
+                <i class="fas fa-desktop"></i> Live-Vorschau Ihrer Website
+            </div>
+            <div class="preview-content">
+                <div class="announcement-banner" id="previewBanner">
+                    <strong>🏖️ Urlaubszeit:</strong> Wir sind vom 24.12. bis 02.01. im Urlaub.
+                    Vertretung: Dr. Müller, Tel: +43 1 234567
+                    <button class="close-btn">×</button>
+                </div>
+                <div style="padding: 20px;">
+                    <h2>Tierambulanz Prater</h2>
+                    <p>Ihre Ankündigungen erscheinen hier prominent auf der Startseite...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Save data to localStorage (simulating a database)
+        function saveData(key, data) {
+            localStorage.setItem(key, JSON.stringify(data));
+            showNotification('Änderungen gespeichert!', 'success');
+        }
+
+        // Load data from localStorage
+        function loadData(key) {
+            const data = localStorage.getItem(key);
+            return data ? JSON.parse(data) : null;
+        }
+
+        // Announcement Form Handler
+        document.getElementById('announcementForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const announcement = {
+                type: document.getElementById('announcementType').value,
+                startDate: document.getElementById('startDate').value,
+                endDate: document.getElementById('endDate').value,
+                title: document.getElementById('announcementTitle').value,
+                message: document.getElementById('announcementMessage').value,
+                substitute: document.getElementById('substituteInfo').value,
+                created: new Date().toISOString()
+            };
+
+            // Save to storage
+            let announcements = loadData('announcements') || [];
+            announcements.push(announcement);
+            saveData('announcements', announcements);
+
+            // Update preview
+            updatePreview(announcement);
+
+            // Reset form
+            this.reset();
+
+            // Reload announcements list
+            loadAnnouncements();
+        });
+
+        // Update live preview
+        function updatePreview(announcement) {
+            const banner = document.getElementById('previewBanner');
+            const icon = getIconForType(announcement.type);
+            banner.innerHTML = `
+                <strong>${icon} ${announcement.title}:</strong> ${announcement.message}
+                ${announcement.substitute ? `<br>Vertretung: ${announcement.substitute}` : ''}
+                <button class="close-btn">×</button>
+            `;
+            banner.classList.add('active');
+        }
+
+        // Get icon for announcement type
+        function getIconForType(type) {
+            const icons = {
+                'holiday': '🏖️',
+                'emergency': '🚨',
+                'news': '📰',
+                'special': '⭐',
+                'warning': '⚠️'
+            };
+            return icons[type] || '📢';
+        }
+
+        // Quick Actions
+        function quickHolidayMode() {
+            document.getElementById('announcementType').value = 'holiday';
+            document.getElementById('announcementTitle').value = 'Wir sind im Urlaub';
+            document.getElementById('announcementTitle').focus();
+        }
+
+        function quickEmergency() {
+            document.getElementById('announcementType').value = 'emergency';
+            document.getElementById('announcementTitle').value = 'Wichtige Information';
+            document.getElementById('announcementTitle').focus();
+        }
+
+        function quickSpecialHours() {
+            document.querySelector('a[href="#hours"]').click();
+            document.getElementById('specialHoursToggle').checked = true;
+        }
+
+        // Export data function
+        function exportData() {
+            const allData = {
+                announcements: loadData('announcements'),
+                hours: loadData('hours'),
+                team: loadData('team'),
+                services: loadData('services'),
+                exportDate: new Date().toISOString()
+            };
+
+            const dataStr = JSON.stringify(allData, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `tierambulanz-backup-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+        }
+
+        // Show notification
+        function showNotification(message, type) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `alert alert-${type} position-fixed top-0 end-0 m-3`;
+            notification.style.zIndex = '9999';
+            notification.innerHTML = message;
+            document.body.appendChild(notification);
+
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Edit announcement
+        function editAnnouncement(id) {
+            showNotification('Bearbeitungsfunktion wird geladen...', 'info');
+        }
+
+        // Delete announcement
+        function deleteAnnouncement(id) {
+            if (confirm('Möchten Sie diese Ankündigung wirklich löschen?')) {
+                showNotification('Ankündigung gelöscht', 'success');
+                // Remove from storage and reload
+                loadAnnouncements();
+            }
+        }
+
+        // Load announcements list
+        function loadAnnouncements() {
+            const announcements = loadData('announcements') || [];
+            // Update the announcements list display
+            console.log('Loaded announcements:', announcements);
+        }
+
+        // View website
+        function viewWebsite() {
+            window.open('index.html', '_blank');
+        }
+
+        // Logout
+        function logout() {
+            if (confirm('Möchten Sie sich wirklich abmelden?')) {
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAnnouncements();
+        });
+    </script>
+</body>
+</html>

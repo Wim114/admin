@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tierambulanz Prater - Ihre Tierarztpraxis in Wien | 24h Notdienst</title>
+    <meta name="description" content="Tierambulanz Prater - Moderne Tierarztpraxis in Wien. Kompetente Betreuung für Hunde, Katzen und Kleintiere. 24h Notdienst verfügbar. ☎ +43 01 7269181">
+    <meta name="keywords" content="Tierarzt Wien, Tierarztpraxis, Notdienst, Veterinär, Tierklinik Wien">
+    <meta property="og:title" content="Tierambulanz Prater - Moderne Tierarztpraxis">
+    <meta property="og:description" content="Kompetente und liebevolle Betreuung für Ihre Haustiere. Termine nach Vereinbarung.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="de_AT">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="images/clinic2.jpg">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #00ace2;
+            --secondary-color: #005d83;
+            --accent-color: #ebf9ff;
+            --text-dark: #22242C;
+            --text-light: #666;
+            --white: #ffffff;
+            --light-bg: #f8f9fa;
+            --success: #28a745;
+            --danger: #ff4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Oxygen', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--white);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            position: relative;
+        }
+
+        .loader-logo {
+            animation: pulse 1.5s ease-in-out infinite;
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+        }
+
+        /* Header Styles */
+        .header-wrap {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header-wrap.scrolled {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .navbar {
+            padding: 0.8rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            transition: transform 0.3s ease;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .navbar-brand:hover .logo-svg {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .brand-main {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--secondary-color);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .brand-sub {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            font-weight: 400;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-dark);
+            font-weight: 500;
+            padding: 0.5rem 1.2rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .navbar-nav .nav-link:hover::after {
+            width: 80%;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0, 93, 131, 0.7), rgba(0, 172, 226, 0.7)), url('images/AdobeStock_481854656-1-scaled-545451366.jpg') center/cover no-repeat;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+        }
+
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            color: var(--white);
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero-content p {
+            color: var(--white);
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .btn-primary-custom {
+            background: var(--white);
+            color: var(--secondary-color);
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            margin-right: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            color: var(--secondary-color);
+        }
+
+        .btn-secondary-custom {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+            padding: 13px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary-custom:hover {
+            background: var(--white);
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Mission Cards */
+        .mission-section {
+            padding: 80px 0;
+            background: var(--light-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        .mission-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            text-align: center;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .mission-card-icon {
+            font-size: 4rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .mission-card:hover .mission-card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .mission-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .mission-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 80px 0;
+        }
+
+        .service-box {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 2px solid var(--accent-color);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,172,226,0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .service-box:hover::before {
+            left: 100%;
+        }
+
+        .service-box:hover {
+            border-color: var(--primary-color);
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0,172,226,0.2);
+        }
+
+        .service-box i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-box:hover i {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .service-box h4 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .team-member {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .team-member-image {
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .team-info h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-info .position {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-info .credentials {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Appointment Form */
+        .appointment-section {
+            background: var(--primary-color);
+            padding: 60px 0;
+            color: var(--white);
+            position: relative;
+        }
+
+        .appointment-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,133.3C672,139,768,181,864,181.3C960,181,1056,139,1152,117.3C1248,96,1344,96,1392,96L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+
+        .appointment-form {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-control-custom {
+            background: var(--white);
+            border: none;
+            border-radius: 50px;
+            padding: 15px 25px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control-custom:focus {
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.3);
+            outline: none;
+            transform: translateY(-2px);
+        }
+
+        .submit-btn {
+            background: var(--secondary-color);
+            color: var(--white);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            width: 100%;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .submit-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Statistics Section */
+        .stats-section {
+            padding: 60px 0;
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Opening Hours */
+        .opening-hours {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .opening-hours h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hours-table {
+            list-style: none;
+            padding: 0;
+        }
+
+        .hours-table li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .hours-table li:hover {
+            padding-left: 10px;
+            background: var(--accent-color);
+            margin: 0 -10px;
+            padding-right: 10px;
+        }
+
+        .hours-table li:last-child {
+            border-bottom: none;
+        }
+
+        .hours-table .day {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .hours-table .time {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: #3d3e40;
+            color: var(--white);
+            padding: 50px 0 20px;
+            position: relative;
+        }
+
+        .footer-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .footer-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-content ul li {
+            margin-bottom: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-content ul li:hover {
+            transform: translateX(5px);
+        }
+
+        .footer-content ul li i {
+            color: var(--primary-color);
+            margin-right: 10px;
+            width: 20px;
+        }
+
+        .footer-content a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-content a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links a {
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 2rem;
+            padding-top: 2rem;
+            text-align: center;
+        }
+
+        /* Back to Top Button */
+        #backToTop {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        #backToTop:hover {
+            background: var(--secondary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Cookie Banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            padding: 20px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 9998;
+            display: none;
+        }
+
+        .cookie-banner.show {
+            display: block;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .navbar-nav {
+                text-align: center;
+                padding: 1rem 0;
+                background: rgba(255,255,255,0.98);
+                margin-top: 1rem;
+                border-radius: 10px;
+            }
+
+
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .brand-main {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+
+        /* Print Styles */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader">
+            <img src="images/clinic2.jpg" alt="VetCare Wien Logo" class="loader-logo">
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header-wrap">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="#home">
+                    <img src="images/clinic2.jpg" alt="VetCare Wien Logo" class="logo-img">
+                    <div class="brand-text">
+                        <span class="brand-main">Tierambulanz Prater</span>
+                        <span class="brand-sub">Moderne Tiermedizin mit Herz</span>
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#home">Startseite</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">Über uns</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#services">Leistungen</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#team">Unser Team</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Kontakt</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div id="announcementContainer"></div>
+
+    <script>
+    // Load and display announcements
+    (function() {
+        const announcements = JSON.parse(localStorage.getItem('announcements') || '[]');
+        const container = document.getElementById('announcementContainer');
+        const now = new Date();
+
+        announcements.forEach(ann => {
+            const start = new Date(ann.startDate);
+            const end = new Date(ann.endDate);
+
+            if (now >= start && now <= end) {
+                const banner = document.createElement('div');
+                banner.style.cssText = `
+                    background: linear-gradient(135deg, #00ace2, #005d83);
+                    color: white;
+                    padding: 15px;
+                    text-align: center;
+                    position: relative;
+                    font-family: Arial, sans-serif;
+                `;
+
+                const icons = {
+                    'holiday': '🏖️',
+                    'emergency': '🚨',
+                    'news': '📰',
+                    'special': '⭐',
+                    'warning': '⚠️'
+                };
+
+                banner.innerHTML = `
+                    <strong>${icons[ann.type] || ''} ${ann.title}:</strong> ${ann.message}
+                    ${ann.substitute ? `<br>Vertretung: ${ann.substitute}` : ''}
+                    <button onclick="this.parentElement.remove()" style="
+                        position: absolute;
+                        right: 15px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        background: transparent;
+                        border: none;
+                        color: white;
+                        font-size: 20px;
+                        cursor: pointer;
+                    ">×</button>
+                `;
+
+                container.appendChild(banner);
+            }
+        });
+    })();
+    </script>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <div class="hero-content" data-aos="fade-right">
+                        <h1>Moderne Tiermedizin mit Herz in Wien</h1>
+                        <p>Kompetente und liebevolle Betreuung für Ihre Haustiere.
+                           24-Stunden-Notdienst verfügbar.</p>
+                        <div class="hero-buttons">
+                            <a href="#appointment" class="btn-primary-custom">Termin vereinbaren</a>
+                            <a href="#services" class="btn-secondary-custom">Unsere Leistungen</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="opening-hours" data-aos="fade-left">
+                        <h3><i class="fas fa-clock"></i> Öffnungszeiten</h3>
+                        <ul class="hours-table">
+                            <li>
+                                <span class="day">Montag - Freitag</span>
+                                <span class="time">>09:00-12:00 & 16:00-19:00</span>
+                            </li>
+                            <li>
+                                <span class="day">Samstag</span>
+                                <span class="time">09:00 - 12:00</span>
+                            </li>
+                            <li>
+                                <span class="day">Sonntag</span>
+                                <span class="time" style="color: #ff4444; font-weight: 700;">GESCHLOSSEN</span>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="stat-box" data-aos="zoom-in">
+                        <div class="stat-number" data-target="10">0</div>
+                        <div class="stat-label">Jahre Erfahrung</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-box" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="stat-number" data-target="+300">0</div>
+                        <div class="stat-label">Glückliche Patienten</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-box" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="stat-number" data-target="2">0</div>
+                        <div class="stat-label">Spezialisierte Tierärzte</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-box" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Tage die Woche</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="about" class="mission-section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Unsere Mission</h2>
+                <p>Wir setzen uns für das Wohlbefinden und die Gesundheit Ihrer Tiere ein</p>
+            </div>
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <div class="mission-card" data-aos="fade-up">
+                        <div class="mission-card-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3>Gesundheit & Wohlbefinden</h3>
+                        <p>Individuelle Betreuung, präventive Gesundheitspläne und modernste Therapien für jedes Tier.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="mission-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="mission-card-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Vertrauen</h3>
+                        <p>Offene und transparente Kommunikation mit Tierbesitzern für bewusste Entscheidungen.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="mission-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="mission-card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Solidarität</h3>
+                        <p>Förderung der Aufklärung über Tiergesundheit und Respekt gegenüber allen Tieren.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="mission-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="mission-card-icon">
+                            <i class="fas fa-infinity"></i>
+                        </div>
+                        <h3>Immer zusammen</h3>
+                        <p>Ihr verlässlicher Partner während der gesamten Lebensreise Ihres Haustieres.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Unsere Leistungen</h2>
+                <p>Umfassende tiermedizinische Versorgung unter einem Dach</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="service-box" data-aos="fade-right">
+                        <i class="fas fa-stethoscope"></i>
+                        <h4>Allgemeine Tiermedizin</h4>
+                        <p>Routineuntersuchungen, Impfungen, Gesundheitschecks und Behandlung von Krankheiten.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="service-box" data-aos="fade-left">
+                        <i class="fas fa-procedures"></i>
+                        <h4>Chirurgie</h4>
+                        <p>Moderne Operationssäle für Routine- und Spezialeingriffe mit höchsten Sicherheitsstandards.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="service-box" data-aos="fade-right">
+                        <i class="fas fa-x-ray"></i>
+                        <h4>Diagnostik</h4>
+                        <p>Digitales Röntgen, Ultraschall, Labor und modernste Diagnoseverfahren.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="service-box" data-aos="fade-left">
+                        <i class="fas fa-tooth"></i>
+                        <h4>Zahnmedizin</h4>
+                        <p>Professionelle Zahnreinigung, Zahnextraktionen und Kieferchirurgie.</p>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team-section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Unser Expertenteam</h2>
+                <p>Erfahrene Tierärzte mit Leidenschaft für Tiergesundheit</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="team-member" data-aos="flip-left">
+                        <div class="team-member-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <i class="fas fa-user-md" style="font-size: 5rem; color: white;"></i>
+                        </div>
+                        <div class="team-info">
+                            <h4>Dr. Maria Schneider</h4>
+                            <p class="position">Klinikleitung</p>
+                            <p class="credentials">Fachtierärztin für Kleintiere<br>Chirurgie & Innere Medizin</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-member" data-aos="flip-left" data-aos-delay="100">
+                        <div class="team-member-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            <i class="fas fa-user-md" style="font-size: 5rem; color: white;"></i>
+                        </div>
+                        <div class="team-info">
+                            <h4>Dr. Thomas Weber</h4>
+                            <p class="position">Anästhesie & Notfallmedizin</p>
+                            <p class="credentials">Spezialist für Intensivmedizin</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-member" data-aos="flip-left" data-aos-delay="200">
+                        <div class="team-member-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            <i class="fas fa-user-md" style="font-size: 5rem; color: white;"></i>
+                        </div>
+                        <div class="team-info">
+                            <h4>Dr. Julia Müller</h4>
+                            <p class="position">Zahnmedizin & Dermatologie</p>
+                            <p class="credentials">Zusatzausbildung Verhaltensmedizin</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appointment Section -->
+    <section id="appointment" class="appointment-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="appointment-form" data-aos="zoom-in">
+                        <h2 class="text-white text-center mb-4">Möchten Sie einen Termin vereinbaren?</h2>
+                        <p class="text-white text-center mb-5">Hinterlassen Sie uns Ihre Kontaktdaten und wir melden uns schnellstmöglich bei Ihnen</p>
+
+                        <form id="appointmentForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control form-control-custom" placeholder="Vor- und Nachname *" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="tel" class="form-control form-control-custom" placeholder="Telefonnummer *" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control form-control-custom" placeholder="E-Mail-Adresse *" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <select class="form-control form-control-custom" required>
+                                        <option value="">Art des Tieres wählen *</option>
+                                        <option>Hund</option>
+                                        <option>Katze</option>
+                                        <option>Kaninchen</option>
+                                        <option>Vogel</option>
+                                        <option>Reptil</option>
+                                        <option>Andere</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <textarea class="form-control form-control-custom" rows="4" placeholder="Beschreiben Sie kurz den Grund Ihres Besuchs"></textarea>
+                                </div>
+                                <div class="col-md-12 mt-3">
+                                    <div class="form-check text-white mb-3">
+                                        <input class="form-check-input" type="checkbox" id="privacy" required>
+                                        <label class="form-check-label" for="privacy">
+                                            Ich habe die <a href="#" class="text-white text-decoration-underline">Datenschutzerklärung</a> gelesen und akzeptiere sie.
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mx-auto">
+                                    <button type="submit" class="submit-btn">
+                                        <i class="fas fa-paper-plane"></i> Anfrage senden
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="row footer-content">
+                <div class="col-md-4 mb-4">
+                    <h3>Tierambulanz Prater Wien</h3>
+                    <p class="mb-3">Ihre moderne Tierarztpraxis im Herzen von Wien. Wir sind für Sie und Ihre Lieblinge da!</p>
+                    <div class="social-links mt-4">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h3>Kontakt</h3>
+                    <ul>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+43 01 7269181">+43 01 7269181</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:tierambulanzprater@gmx.at">tierambulanzprater@gmx.at</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            Mariahilfer Straße 123<br>
+                            <span style="margin-left: 30px;">1060 Wien, Österreich</span>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h3>Schnellzugriff</h3>
+                    <ul>
+                        <li><i class="fas fa-chevron-right"></i> <a href="#services">Unsere Leistungen</a></li>
+                        <li><i class="fas fa-chevron-right"></i> <a href="#team">Unser Team</a></li>
+                        <li><i class="fas fa-chevron-right"></i> <a href="#appointment">Termin vereinbaren</a></li>
+                        <li><i class="fas fa-chevron-right"></i> <a href="#">Notfallnummern</a></li>
+                        <li><i class="fas fa-chevron-right"></i> <a href="#">Karriere</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 VetCare Wien GmbH. Alle Rechte vorbehalten. |
+                   <a href="#" class="text-white">Datenschutz</a> |
+                   <a href="#" class="text-white">Impressum</a> |
+                   <a href="#" class="text-white">AGB</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Map Section -->
+    <div style="width: 100%; height: 400px; background: #ddd; position: relative;">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1329.2099505803017!2d16.398223274241484!3d48.217788551029585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476d071ac36c0371%3A0xb1d4028f922cf125!2sTierambulanz%20Prater!5e0!3m2!1sit!2sat!4v1756032450440!5m2!1sit!2sat"
+            width="100%"
+            height="400"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            title="VetCare Wien Standort">
+        </iframe>
+    </div>
+
+    <!-- Cookie Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-9">
+                    <p class="mb-0">Wir verwenden Cookies, um Ihre Erfahrung auf unserer Website zu verbessern. Durch die weitere Nutzung stimmen Sie unserer Cookie-Richtlinie zu.</p>
+                </div>
+                <div class="col-md-3 text-end">
+                    <button class="btn btn-primary me-2" onclick="acceptCookies()">Akzeptieren</button>
+                    <button class="btn btn-outline-secondary" onclick="declineCookies()">Ablehnen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" aria-label="Nach oben scrollen" class="no-print">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Preloader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('preloader').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('preloader').style.display = 'none';
+                }, 500);
+            }, 500);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header-wrap');
+            const navbar = document.querySelector('.navbar');
+
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+                navbar.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    const navCollapse = document.querySelector('.navbar-collapse');
+                    if (navCollapse.classList.contains('show')) {
+                        navCollapse.classList.remove('show');
+                    }
+                }
+            });
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Animate numbers
+        const animateNumbers = () => {
+            const numbers = document.querySelectorAll('.stat-number[data-target]');
+
+            numbers.forEach(num => {
+                const target = parseInt(num.getAttribute('data-target'));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+
+                const updateNumber = () => {
+                    if (current < target) {
+                        current += increment;
+                        num.textContent = Math.ceil(current).toLocaleString('de-DE');
+                        requestAnimationFrame(updateNumber);
+                    } else {
+                        num.textContent = target.toLocaleString('de-DE');
+                    }
+                };
+
+                // Start animation when element is in view
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            updateNumber();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+
+                observer.observe(num);
+            });
+        };
+
+        animateNumbers();
+
+        // Form submission
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const button = this.querySelector('.submit-btn');
+            const originalText = button.innerHTML;
+
+            // Simulate form submission
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Wird gesendet...';
+            button.disabled = true;
+
+            setTimeout(() => {
+                button.innerHTML = '<i class="fas fa-check"></i> Vielen Dank! Wir melden uns bald.';
+                button.style.background = '#28a745';
+
+                // Reset form after 3 seconds
+                setTimeout(() => {
+                    this.reset();
+                    button.innerHTML = originalText;
+                    button.style.background = '';
+                    button.disabled = false;
+                }, 3000);
+            }, 1500);
+        });
+
+        // Cookie banner
+        function showCookieBanner() {
+            if (!localStorage.getItem('cookiesAccepted')) {
+                setTimeout(() => {
+                    document.getElementById('cookieBanner').classList.add('show');
+                }, 2000);
+            }
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookieBanner').classList.remove('show');
+        }
+
+        function declineCookies() {
+            localStorage.setItem('cookiesAccepted', 'false');
+            document.getElementById('cookieBanner').classList.remove('show');
+        }
+
+        showCookieBanner();
+
+
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Console welcome message - Fixed version
+        console.log('%c🐾 Willkommen bei Tierambulanz Prater! 🐾', 'color: #00ace2; font-size: 20px; font-weight: bold;');
+        console.log('%cWir kümmern uns um Ihre Lieblinge mit Herz und Kompetenz.', 'color: #005d83; font-size: 14px;');
+    </script>
+</body>
+</html>
